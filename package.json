@@ -1,0 +1,19 @@
+{
+  "name": "second_project",
+  "version": "1.0.0",
+  "description": "'training project'",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "author": "serge ivlev",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.1.0",
+    "lodash": "^4.17.15"
+  }
+}
