@@ -1,6 +1,9 @@
 test:
 	npm test
-	
+
+make install:
+	npm install
+
 lint:
 	npx eslint .
 
