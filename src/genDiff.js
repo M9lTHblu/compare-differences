@@ -1,16 +1,9 @@
 import _ from 'lodash';
-import fs from 'fs';
+import parse from './parsers.js';
 
-export const readFile = (path) => fs.readFileSync(`${path}`, 'utf8', (err, data) => {
-  if (err) {
-    return console.error(err);
-  }
-  return data;
-});
-
-export const genDiff = (path1, path2) => {
-  const file1 = JSON.parse(readFile(path1));
-  const file2 = JSON.parse(readFile(path2));
+export default (path1, path2) => {
+  const file1 = parse(path1);
+  const file2 = parse(path2);
 
   const equal = Object.entries(file1)
     .filter(([key, value]) => file2[key] === value)

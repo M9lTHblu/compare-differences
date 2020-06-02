@@ -1,10 +1,12 @@
-import { readFile, genDiff } from '../src/genDiff.js';
-import result from '../__fixtures__/variables.js';
+import genDiff from '../src/genDiff.js';
+import parse from '../src/parsers.js';
+import { gendiff, readfile } from '../__fixtures__/variables.js';
 
 test('search and conversion', () => {
-  expect(typeof readFile('./__fixtures__/before.json')).toBe('string');
+  expect(parse('./__fixtures__/before.json')).toEqual(readfile);
+  expect(parse('./__fixtures__/before.yml')).toEqual(readfile);
 });
 
 test('gendiff', () => {
-  expect(genDiff('./__fixtures__/before.json', './__fixtures__/after.json')).toStrictEqual(result);
+  expect(genDiff('./__fixtures__/before.json', './__fixtures__/after.json')).toEqual(gendiff);
 });

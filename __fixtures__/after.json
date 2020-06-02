@@ -1,5 +1,5 @@
 {
   "backpack": true,
-  "capacity": "10",
-  "bottle": "1"
+  "capacity": 10,
+  "bottle": 1
 }
