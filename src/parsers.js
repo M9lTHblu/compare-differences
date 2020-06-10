@@ -14,4 +14,5 @@ const parse = (path) => {
 
   return ini.parse(read);
 };
+
 export default parse;

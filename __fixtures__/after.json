@@ -1,5 +1,5 @@
 {
-  "backpack": true,
-  "capacity": 10,
-  "bottle": 1
+  "timeout": 20,
+  "verbose": true,
+  "host": "hexlet.io"
 }
