@@ -5,17 +5,16 @@ const render = (coll) => {
   const result = coll.flatMap(({
     type, name, value, oldValue, newValue,
   }) => {
-    if (type === 'unchange') {
-      return `    ${name}: ${value}`;
+    switch (type) {
+      case 'unchange':
+        return `    ${name}: ${value}`;
+      case 'modifed':
+        return [`  - ${name}: ${oldValue}`, `  + ${name}: ${newValue}`];
+      case 'deleted':
+        return `  - ${name}: ${value}`;
+      default:
+        return `  + ${name}: ${value}`;
     }
-    if (type === 'modifed') {
-      return [`  - ${name}: ${oldValue}`, `  + ${name}: ${newValue}`];
-    }
-    if (type === 'deleted') {
-      return `  - ${name}: ${value}`;
-    }
-
-    return `  + ${name}: ${value}`;
   }).join('\n');
   return `{\n${result}\n}`;
 };
