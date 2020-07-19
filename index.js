@@ -1,4 +1,4 @@
-import genDiff from './formatters/index.js';
+import genDiff from './src/formatters/genDiff.js';
 
 
 export default genDiff;
