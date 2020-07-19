@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "npx -n --experimental-vm-modules jest --watch"
+    "test": "npx -n --experimental-vm-modules jest --watchAll"
   },
   "bin": {
     "gendiff": "bin/gendiff.js"

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import program from 'commander';
-import getFormats from '../formatters/index.js';
+import genDiff from '../formatters/index.js';
 
 const format = (str) => str;
 
@@ -9,5 +9,7 @@ program
   .description('Compares two configuration files and shows a difference.')
   .option('-f, --format [type]', 'output format', format, 'stylish')
   .arguments('<filepath1> <filepath2>')
-  .action((filePath1, filePath2) => getFormats(filePath1, filePath2, program.format))
+  .action((filePath1, filePath2) => genDiff(filePath1, filePath2, program.format))
   .parse(process.argv);
+const a = __dirname;
+console.log(a);

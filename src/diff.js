@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
-
 const diff = (file1, file2) => {
-  const keys = _.union(Object.keys(file1), Object.keys(file2));
+  const keys = _.union(Object.keys(file1), Object.keys(file2)).sort();
   return (
     keys
       .flatMap((node) => {

@@ -15,7 +15,7 @@ const internal = (tree, dep) => {
   return iter(tree, dep);
 };
 
-const stylish = (tree) => {
+export default (tree) => {
   const iter = (node, depth) => node
     .map(({
       type, name, value, child, oldValue, newValue,
@@ -35,4 +35,3 @@ const stylish = (tree) => {
     }).join('\n');
   return iter(tree, 0);
 };
-export default stylish;

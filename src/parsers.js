@@ -2,6 +2,7 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 import ini from 'ini';
 
+
 const parse = (path) => {
   const read = fs.readFileSync(`${path}`, 'utf8');
   if (path.endsWith('json')) {
