@@ -1,16 +1,16 @@
-import fs from 'fs';
+
 import yaml from 'js-yaml';
 import ini from 'ini';
 
-
-const parse = (path) => {
-  const read = fs.readFileSync(`${path}`, 'utf8');
-  if (path.endsWith('json')) {
-    return JSON.parse(read);
-  } if (path.endsWith('yml')) {
-    return yaml.safeLoad(read);
+const parse = (data, format) => {
+  if (format === '.json') {
+    return JSON.parse(data);
   }
-  return ini.parse(read);
+  if (format === '.yml') {
+    return yaml.safeLoad(data);
+  }
+  return ini.parse(data);
 };
+
 
 export default parse;

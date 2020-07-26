@@ -2,35 +2,33 @@ import _ from 'lodash';
 
 const makeSpace = (count) => '  '.repeat(count);
 
-const internal = (tree, dep) => {
-  const iter = (node, depth) => {
-    if (_.isObject(node)) {
-      const toArr = Object.entries(node);
+const extractСhildren = (children, dep) => {
+  const iter = (child, depth) => {
+    if (_.isObject(child)) {
+      const keysValues = Object.entries(child);
       return (
-        toArr.flatMap(([key, val]) => (`{\n    ${makeSpace(depth + 2)}${key}: ${iter(val, depth + 2)}\n${makeSpace(depth + 2)}}`))
+        keysValues.map(([key, val]) => (`{\n    ${makeSpace(depth + 2)}${key}: ${iter(val, depth + 2)}\n${makeSpace(depth + 2)}}`))
       );
     }
-    return node;
+    return child;
   };
-  return iter(tree, dep);
+  return iter(children, dep);
 };
 
 export default (tree) => {
   const iter = (node, depth) => node
-    .map(({
-      type, name, value, child, oldValue, newValue,
-    }) => {
-      switch (type) {
-        case 'internal':
-          return (`  ${makeSpace(depth + 1)}${name}: {\n${iter(child, depth + 2)}\n${makeSpace(depth + 2)}}`);
+    .map((item) => {
+      switch (item.type) {
+        case 'nested':
+          return (`  ${makeSpace(depth + 1)}${item.name}: {\n${iter(item.child, depth + 2)}\n${makeSpace(depth + 2)}}`);
         case 'added':
-          return `${makeSpace(depth + 1)}+ ${name}: ${internal(value, depth)}`;
+          return `${makeSpace(depth + 1)}+ ${item.name}: ${extractСhildren(item.value, depth)}`;
         case 'changed':
-          return (`${makeSpace(depth + 1)}- ${name}: ${internal(oldValue, depth)}\n${makeSpace(depth + 1)}+ ${name}: ${internal(newValue, depth)}`);
+          return (`${makeSpace(depth + 1)}- ${item.name}: ${extractСhildren(item.oldValue, depth)}\n${makeSpace(depth + 1)}+ ${item.name}: ${extractСhildren(item.newValue, depth)}`);
         case 'deleted':
-          return `${makeSpace(depth + 1)}- ${name}: ${internal(value, depth)}`;
+          return `${makeSpace(depth + 1)}- ${item.name}: ${extractСhildren(item.value, depth)}`;
         default:
-          return `  ${makeSpace(depth + 1)}${name}: ${internal(value, depth)}`;
+          return `  ${makeSpace(depth + 1)}${item.name}: ${extractСhildren(item.value, depth)}`;
       }
     }).join('\n');
   return iter(tree, 0);

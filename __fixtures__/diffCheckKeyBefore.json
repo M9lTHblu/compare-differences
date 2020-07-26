@@ -1,9 +1,0 @@
-
-{
-  "key1": "unchanged",
-  "key2": {
-    "value": "object"
-  },
-  "key3": "deleted",
-  "key4": "oldValue"
-}

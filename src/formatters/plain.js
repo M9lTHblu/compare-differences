@@ -4,11 +4,11 @@ const reveal = (node) => (_.isObject(node) ? '[complex value]' : node);
 
 export default (tree) => {
   const iter = (node, path) => node
-    .flatMap(({
+    .map(({
       type, name, value, child, oldValue, newValue,
     }) => {
       switch (type) {
-        case 'internal':
+        case 'nested':
           return iter(child, `${path + name}.`);
         case 'added':
           return `Property '${path}${name}' was added with value: '${reveal(value)}'\n`;

@@ -1,25 +1,26 @@
 import _ from 'lodash';
 
-const diff = (file1, file2) => {
-  const keys = _.union(Object.keys(file1), Object.keys(file2)).sort();
+
+const diff = (tree1, tree2) => {
+  const keys = _.union(Object.keys(tree1), Object.keys(tree2)).sort();
   return (
     keys
       .flatMap((node) => {
-        if (_.isObject(file2[node]) && _.isObject(file1[node])) {
-          const children = diff(file1[node], file2[node]);
-          return { name: node, child: children, type: 'internal' };
+        if (_.has(tree2, node) && tree1[node] === tree2[node]) {
+          return { name: node, value: tree1[node], type: 'unchanged' };
         }
-        if (!_.has(file1, node)) {
-          return { name: node, value: file2[node], type: 'added' };
+        if (!_.has(tree2, node)) {
+          return { name: node, value: tree1[node], type: 'deleted' };
         }
-        if (_.has(file2, node) && file1[node] === file2[node]) {
-          return { name: node, value: file1[node], type: 'unchanged' };
+        if (!_.has(tree1, node)) {
+          return { name: node, value: tree2[node], type: 'added' };
         }
-        if (!_.has(file2, node)) {
-          return { name: node, value: file1[node], type: 'deleted' };
+        if (_.isObject(tree2[node]) && _.isObject(tree1[node])) {
+          const children = diff(tree1[node], tree2[node]);
+          return { name: node, child: children, type: 'nested' };
         }
         return {
-          name: node, oldValue: file1[node], newValue: file2[node], type: 'changed',
+          name: node, oldValue: tree1[node], newValue: tree2[node], type: 'changed',
         };
       })
   );
