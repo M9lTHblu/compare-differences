@@ -1,4 +1,4 @@
 
 
 
-<a href="https://github.com/M9lTHblu/frontend-project-lvl2/workflows/Linter/badge.svg">![Linter]</a>
+![Linter](https://github.com/M9lTHblu/frontend-project-lvl2/workflows/Linter/badge.svg)
