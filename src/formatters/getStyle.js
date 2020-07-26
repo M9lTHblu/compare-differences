@@ -1,7 +1,7 @@
 
 import plain from './plain.js';
 import stylish from './stylish.js';
-import j from './jSON.js';
+import j from './j.js';
 
 export default (data, format) => {
   if (format === 'plain') {
