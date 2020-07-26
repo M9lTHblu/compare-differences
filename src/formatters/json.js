@@ -1,4 +1,4 @@
 
-const jSON = (tree) => JSON.stringify(tree);
+const j = (tree) => JSON.stringify(tree);
 
-export default jSON;
+export default j;
