@@ -6,6 +6,8 @@ export default (tree) => {
   const iter = (node, path) => node
     .map((item) => {
       switch (item.type) {
+        case 'unchanged':
+          return [];
         case 'nested':
           return iter(item.child, `${path + item.name}.`);
         case 'added':
@@ -15,7 +17,7 @@ export default (tree) => {
         case 'deleted':
           return `Property '${path}${item.name}' was removed\n`;
         default:
-          return [];
+          throw new Error(`Unknown type: '${item.type}'  /plain.js`);
       }
     }).join('');
   return iter(tree, '');

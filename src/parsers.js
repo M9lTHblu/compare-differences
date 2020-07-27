@@ -9,7 +9,10 @@ const parse = (data, format) => {
   if (format === '.yml') {
     return yaml.safeLoad(data);
   }
-  return ini.parse(data);
+  if (format === '.ini') {
+    return ini.parse(data);
+  }
+  throw new Error('Invalid file extension!');
 };
 
 

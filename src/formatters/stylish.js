@@ -25,8 +25,10 @@ export default (tree) => {
           return (`${makeSpace(depth + 1)}- ${item.name}: ${extractValue(item.oldValue, depth)}\n${makeSpace(depth + 1)}+ ${item.name}: ${extractValue(item.newValue, depth)}`);
         case 'deleted':
           return `${makeSpace(depth + 1)}- ${item.name}: ${extractValue(item.value, depth)}`;
-        default:
+        case 'unchanged':
           return `  ${makeSpace(depth + 1)}${item.name}: ${extractValue(item.value, depth)}`;
+        default:
+          throw new Error(`Unknown type: '${item.type}'  /stylish.js`);
       }
     }).join('\n');
   return iter(tree, 0);
