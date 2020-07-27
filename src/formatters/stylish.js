@@ -3,15 +3,14 @@ import _ from 'lodash';
 const makeSpace = (count) => '  '.repeat(count);
 
 
-
 const extractValue = (value, depth) => {
   if (_.isObject(value)) {
     const keysValues = Object.entries(value);
     const result = keysValues
-      .map(([key, val]) => `${makeSpace(depth + 4)}${key}: ${extractValue(val, depth + 2)}`).join('\n')
-    return `{\n${result}\n${makeSpace(depth + 2)}}`
+      .map(([key, val]) => `${makeSpace(depth + 4)}${key}: ${extractValue(val, depth + 2)}`).join('\n');
+    return `{\n${result}\n${makeSpace(depth + 2)}}`;
   }
-  return `${value}`
+  return `${value}`;
 };
 
 export default (tree) => {
