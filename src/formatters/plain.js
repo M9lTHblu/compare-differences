@@ -4,18 +4,16 @@ const reveal = (node) => (_.isObject(node) ? '[complex value]' : node);
 
 export default (tree) => {
   const iter = (node, path) => node
-    .map(({
-      type, name, value, child, oldValue, newValue,
-    }) => {
-      switch (type) {
+    .map((item) => {
+      switch (item.type) {
         case 'nested':
-          return iter(child, `${path + name}.`);
+          return iter(item.child, `${path + item.name}.`);
         case 'added':
-          return `Property '${path}${name}' was added with value: '${reveal(value)}'\n`;
+          return `Property '${path}${item.name}' was added with value: '${reveal(item.value)}'\n`;
         case 'changed':
-          return `Property '${path}${name}' was updated. From '${reveal(oldValue)}' to '${reveal(newValue)}'\n`;
+          return `Property '${path}${item.name}' was updated. From '${reveal(item.oldValue)}' to '${reveal(item.newValue)}'\n`;
         case 'deleted':
-          return `Property '${path}${name}' was removed\n`;
+          return `Property '${path}${item.name}' was removed\n`;
         default:
           return [];
       }
