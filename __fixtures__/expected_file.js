@@ -1,5 +1,5 @@
-export const stylishResult = `
-{
+export const expectStylish = 
+`{
     common: {
       + follow: false
         setting1: Value 1
@@ -13,6 +13,10 @@ export const stylishResult = `
             key5: value5
         }
         setting6: {
+            doge: {
+              - wow: too much
+              + wow: so much
+            }
             key: value
           + ops: vops
         }
@@ -28,11 +32,19 @@ export const stylishResult = `
     }
   - group2: {
         abc: 12345
+        deep: {
+            id: 45
+        }
     }
   + group3: {
         fee: 100500
+        deep: {
+            id: {
+                number: 45
+            }
+        }
     }
 }`;
 
-export const fileFlat1 = ('./__fixtures__/before.json');
-export const fileFlat2 = ('./__fixtures__/after.json');
+
+
