@@ -21,7 +21,7 @@ export default (tree) => {
         case 'deleted':
           return `${makeSpace(depth + 1)}- ${item.name}: ${extractValue(item.value, depth)}`;
         case 'added':
-          return `${makeSpace(depth + 1)}+ ${item.name}: ${extractValue(item.value, depth)}`;                            
+          return `${makeSpace(depth + 1)}+ ${item.name}: ${extractValue(item.value, depth)}`;
         case 'nested':
           return (`  ${makeSpace(depth + 1)}${item.name}: {\n${iter(item.child, depth + 2)}\n${makeSpace(depth + 2)}}`);
         case 'changed':
