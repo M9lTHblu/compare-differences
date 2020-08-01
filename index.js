@@ -17,3 +17,4 @@ export default (filePath1, filePath2, format) => {
   const differences = diff(data1, data2);
   return getStyle(differences, format);
 };
+export { getContent };
