@@ -1,5 +1,5 @@
 {
-  "name": "gendiff",
+  "name": "@hexlet/code ",
   "description": "'training project'",
   "type": "module",
   "main": "index.js",
