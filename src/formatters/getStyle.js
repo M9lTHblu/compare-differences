@@ -4,14 +4,11 @@ import stylish from './stylish.js';
 import j from './j.js';
 
 export default (data, format) => {
-  if (format === 'stylish') {
-    return `{\n${stylish(data)}\n}`;
+  switch (format) {
+    case 'plain':
+      return plain(data);
+    case 'json':
+      return j(data);
+    default: return `{\n${stylish(data)}\n}`;
   }
-  if (format === 'plain') {
-    return plain(data);
-  }
-  if (format === 'json') {
-    return j(data);
-  }
-  throw new Error(`Unknown output format: '${format}'!`);
 };
